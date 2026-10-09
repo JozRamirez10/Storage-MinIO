@@ -1,0 +1,16 @@
+services:
+  storage-minio:
+    container_name: storage_minio
+    build: .
+    ports:
+      - "7003:7003"
+    env_file:
+      - .env
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    volumes:
+      - ${TMP_DIR}:${TMP_DIR}
+    restart: always
